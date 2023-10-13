@@ -43,13 +43,15 @@ try {
         body {
             display: grid;
             gap: 1rem;
-            grid-template-columns: repeat(3, 33.3%);
+            grid-template-columns: repeat(3, 32.5%);
             padding: 1rem;
         }
 
         .perfil_time {
             border: 1px solid black;
             padding: 1rem;
+            border-radius: 10px;
+            color: white;
         }
 
         .cabecalho {
@@ -67,6 +69,14 @@ try {
 
         .taca {
             width: 1rem;
+            margin: 0.1rem;
+        }
+
+        p {
+            margin: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
         }
     </style>
 </head>
@@ -74,7 +84,12 @@ try {
 <body>
 
     <?php foreach ($result['clubes'] as $time) : ?>
-        <div class="perfil_time">
+        <?php 
+            $cores = explode(',', $time['Cores']);
+            $cores = implode(', ', $cores);
+            $gradiente = "style = 'background: linear-gradient(to bottom right, $cores);'"
+        ?>
+        <div class="perfil_time" <?= $gradiente ?>>
             <div class="cabecalho">
                 <img src="http://localhost/teste_api/<?= $time['Escudo'] ?>">
 
