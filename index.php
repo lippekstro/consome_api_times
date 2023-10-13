@@ -78,6 +78,18 @@ try {
             flex-wrap: wrap;
             align-items: center;
         }
+
+        @media only screen and (max-width: 900px) {
+            body {
+                grid-template-columns: auto;
+            }
+        }
+
+        @media only screen and (min-width: 901px) and (max-width: 1300px) {
+            body {
+                grid-template-columns: repeat(2, 49%);
+            }
+        }
     </style>
 </head>
 
