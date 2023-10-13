@@ -91,7 +91,7 @@ try {
         ?>
         <div class="perfil_time" <?= $gradiente ?>>
             <div class="cabecalho">
-                <img src="http://localhost/teste_api/<?= $time['Escudo'] ?>">
+                <img src="/teste_api/<?= $time['Escudo'] ?>">
 
                 <div class="conteudo">
                     <h1><?= $time['Clube'] ?></h1>
@@ -105,7 +105,7 @@ try {
                     <p>
                         <b><?= $titulo['Campeonato'] ?> (<?= $titulo['Qntd'] ?>)</b>:
                         <?php for ($i = 0; $i < $titulo['Qntd']; $i++) : ?>
-                            <img src="http://localhost/teste_api/<?= $titulo['Imagem'] ?>" class="taca">
+                            <img src="/teste_api/<?= $titulo['Imagem'] ?>" class="taca">
                         <?php endfor; ?>
                     </p>
                 <?php endforeach; ?>
