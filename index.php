@@ -1,6 +1,6 @@
 <?php
 
-$clubes_api = "http://localhost/teste_api/api.php";  // Note o "http://" para indicar que é uma URL
+$clubes_api = "http://localhost/teste_api/clubesAll";  // Note o "http://" para indicar que é uma URL
 
 try {
     $data_nome = file_get_contents($clubes_api);
