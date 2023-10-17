@@ -1,6 +1,7 @@
 <?php
+require_once '_cabecalho.php';
 
-$clubes_api = "http://localhost/teste_api/clubesAll";  // Note o "http://" para indicar que é uma URL
+$clubes_api = "http://localhost/teste_api/clubesall";  // Note o "http://" para indicar que é uma URL
 
 try {
     $data_nome = file_get_contents($clubes_api);
@@ -22,88 +23,17 @@ try {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-        * {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(3, 32.5%);
-            padding: 1rem;
-        }
-
-        .perfil_time {
-            border: 1px solid black;
-            padding: 1rem;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .cabecalho {
-            display: grid;
-            grid-template-columns: auto auto;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .conteudo {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .taca {
-            width: 1rem;
-            margin: 0.1rem;
-        }
-
-        p {
-            margin: 0.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        @media only screen and (max-width: 900px) {
-            body {
-                grid-template-columns: auto;
-            }
-        }
-
-        @media only screen and (min-width: 901px) and (max-width: 1300px) {
-            body {
-                grid-template-columns: repeat(2, 49%);
-            }
-        }
-    </style>
-</head>
-
-<body>
-
+<section class="grade-conteudo">
     <?php foreach ($result['clubes'] as $time) : ?>
-        <?php 
-            $cores = explode(',', $time['Cores']);
-            $cores = implode(', ', $cores);
-            $gradiente = "style = 'background: linear-gradient(to bottom right, $cores);'"
+        <?php
+        $cores = explode(',', $time['Cores']);
+        $cores = implode(', ', $cores);
+        $gradiente = "style = 'background: linear-gradient(to bottom right, $cores);'";
         ?>
-        <div class="perfil_time" <?= $gradiente ?>>
-            <div class="cabecalho">
-                <img src="/teste_api/<?= $time['Escudo'] ?>">
+
+        <a href="exibe.php?id=<?= $time['Id'] ?>">
+            <div class="cabecalho" <?= $gradiente ?>>
+                <img src="/teste_api/<?= $time['Escudo'] ?>" width="100%" height="auto" class="escudo">
 
                 <div class="conteudo">
                     <h1><?= $time['Clube'] ?></h1>
@@ -111,19 +41,11 @@ try {
                     <p><b>Estádio</b>: <?= $time['Estádio'] ?></p>
                 </div>
             </div>
-            <div class="titulos">
-                <h2 style="text-align: center;">Títulos</h2>
-                <?php foreach ($time['Títulos'] as $titulo) : ?>
-                    <p>
-                        <b><?= $titulo['Campeonato'] ?> (<?= $titulo['Qntd'] ?>)</b>:
-                        <?php for ($i = 0; $i < $titulo['Qntd']; $i++) : ?>
-                            <img src="/teste_api/<?= $titulo['Imagem'] ?>" class="taca">
-                        <?php endfor; ?>
-                    </p>
-                <?php endforeach; ?>
-            </div>
-        </div>
+        </a>
+
     <?php endforeach; ?>
+
+</section>
 
 
 
